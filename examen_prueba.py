@@ -79,24 +79,24 @@ while True:
                     print('La herramienta no se encuentra en el inventario')
             
         case 5:
-                print('----- Reporte de Herramientas con Stock Agotado -----')
-                if len(herramientas) == 0:
-                    print('No hay herramientas cargadas en el inventario.')
-                elif len(existencias) < len(herramientas):
-                    print('El stock de algunas herramientas no ha sido cargado.')
+            print('----- Reporte de Herramientas con Stock Agotado -----')
+            if len(herramientas) == 0:
+                print('No hay herramientas cargadas en el inventario.')
+            elif len(existencias) < len(herramientas):
+                print('El stock de algunas herramientas no ha sido cargado.')
+            else:
+                hay_agotados = False
+                for i in range(len(existencias)):
+                    if existencias[i] == 0:
+                        hay_agotados = True
+                        break
+                if not hay_agotados:
+                    print('No hay herramientas con stock agotado.')
                 else:
-                    hay_agotados = False
-                    for i in range(len(existencias)):
+                    print('Las siguientes herramientas no tienen stock:')
+                    for i in range(len(herramientas)):
                         if existencias[i] == 0:
-                            hay_agotados = True
-                            break
-                    if not hay_agotados:
-                        print('No hay herramientas con stock agotado.')
-                    else:
-                        print('Las siguientes herramientas no tienen stock:')
-                        for i in range(len(herramientas)):
-                            if existencias[i] == 0:
-                                print(f'- {herramientas[i]}')
+                            print(f'- {herramientas[i]}')
         case 6:
             print('-----Ingreso de nueva herramienta-----')
             nombre_nueva_herramienta = input('Ingrese el nombre de la herramienta a agregar: ')
