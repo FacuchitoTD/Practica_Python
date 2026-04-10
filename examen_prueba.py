@@ -79,17 +79,24 @@ while True:
                     print('La herramienta no se encuentra en el inventario')
             
         case 5:
-            print('-----Reporte de Herramientas con Stock Agotado-----')
-            if not herramientas:
-                print('No hay herramientas cargadas en el inventario.')
-            elif len(existencias) < len(herramientas):
-                print('El stock de algunas herramientas no ha sido cargado. Por favor, cargue el stock de todas las herramientas para mostrar el reporte completo.')
-            elif all(stock > 0 for stock in existencias):
-                print('No hay herramientas con stock agotado.')
-            else:
-                for i in range(len(herramientas)):
-                    if existencias[i] == 0:
-                        print(f'{herramientas[i]}: Agotado')
+                    print('----- Reporte de Herramientas con Stock Agotado -----')
+                    if len(herramientas) == 0:
+                        print('No hay herramientas cargadas en el inventario.')
+                    elif len(existencias) < len(herramientas):
+                        print('El stock de algunas herramientas no ha sido cargado.')
+                    else:
+                        hay_agotados = False
+                        for i in range(len(existencias)):
+                            if existencias[i] == 0:
+                                hay_agotados = True
+                                break
+                        if not hay_agotados:
+                            print('No hay herramientas con stock agotado.')
+                        else:
+                            print('Las siguientes herramientas no tienen stock:')
+                            for i in range(len(herramientas)):
+                                if existencias[i] == 0:
+                                    print(f'- {herramientas[i]}')
         case 6:
             print('-----Ingreso de nueva herramienta-----')
             nombre_nueva_herramienta = input('Ingrese el nombre de la herramienta a agregar: ')
@@ -98,8 +105,10 @@ while True:
                 nombre_nueva_herramienta = input('Ingrese nuevamente el nombre de la herramienta a agregar: ')
             if nombre_nueva_herramienta in herramientas:
                 print('El nombre de esa herramienta ya existe en el inventario')
+                continue
             elif len(existencias) < len(herramientas):
                 print('El stock de algunas herramientas no ha sido cargado. Por favor, cargue el stock de todas las herramientas para agregar una nueva herramienta al inventario.')
+                continue
             else:
                 herramientas.append(nombre_nueva_herramienta)
                 cantidad_unidades = input(f'Ingrese la cantidad de unidades para {nombre_nueva_herramienta}: ')
@@ -111,39 +120,36 @@ while True:
                 print(f'{nombre_nueva_herramienta} ha sido agregada al inventario con {cantidad_unidades} unidades.')
         case 7:
             print('-----Actualización de Stock-----')
-
             if not herramientas:
                 print('No hay herramientas cargadas en el inventario.')
-
+                continue
             elif len(existencias) < len(herramientas):
                 print('El stock de algunas herramientas no ha sido cargado. Por favor, cargue el stock de todas las herramientas para actualizar.')
-
+                continue
             else:
                 herramienta_actualizar = input('Ingrese el nombre de la herramienta a actualizar: ')
                 while herramienta_actualizar == '':
                     print('Debe ingresar algún nombre de una herramienta')
                     herramienta_actualizar = input('Ingrese nuevamente el nombre de la herramienta a actualizar: ')
-
                 if herramienta_actualizar in herramientas:
                     cantidad_unidades = input(f'Ingrese la nueva cantidad de unidades para {herramienta_actualizar}: ')
                     while not cantidad_unidades.isdigit():
                         print('Debe ingresar un número válido.')
                         cantidad_unidades = input(f'Ingrese nuevamente la nueva cantidad de unidades para {herramienta_actualizar}: ')
-                    
                     cantidad_unidades = int(cantidad_unidades)
                     index_herramienta = herramientas.index(herramienta_actualizar)
-                    existencias[index_herramienta] = cantidad_unidades
-
-                    print(f'El stock de {herramienta_actualizar} ha sido actualizado a {cantidad_unidades} unidades.')
+                    existencias[index_herramienta] += cantidad_unidades
+                    print(f'El stock de {herramienta_actualizar} ha sido actualizado a {existencias[index_herramienta]} unidades.')
                 else:
                     print('La herramienta no se encuentra en el inventario')
         case 8:
             print('-----Venta de Herramienta-----')
-
             if not herramientas:
                 print('No hay herramientas cargadas en el inventario.')
+                continue
             elif len(existencias) < len(herramientas):
                 print('El stock de algunas herramientas no ha sido cargado. Por favor, cargue el stock de todas las herramientas para realizar ventas.')
+                continue
             else:
                 herramienta_vender = input('Ingrese el nombre de la herramienta a vender: ')
                 while herramienta_vender == '':
@@ -161,6 +167,7 @@ while True:
                         print(f'Se han vendido {cantidad_vender} unidades de {herramienta_vender}. Stock restante: {existencias[index_herramienta]} unidades.')
                     else:
                         print(f'No hay suficiente stock de {herramienta_vender} para realizar la venta. Stock disponible: {existencias[index_herramienta]} unidades.')
+                        continue
                 else:
                     print('La herramienta no se encuentra en el inventario')
         case 9:
