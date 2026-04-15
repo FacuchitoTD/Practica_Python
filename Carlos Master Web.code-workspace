@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "../../../Escritorio/Ejercicios/Carlos Master Web"
+		},
+		{
+			"path": "../../../Escritorio/Ejercicios/Ejercicio"
+		},
+		{
+			"path": "../../../Escritorio/Ejercicios/Libreria"
+		},
+		{
+			"path": "../../../Escritorio/Ejercicios/Libro de Python"
+		},
+		{
+			"path": "../../../Escritorio/Ejercicios/PRE UTN"
+		},
+		{
+			"path": "../../../Escritorio/Ejercicios/La Geekipedia De Ernesto"
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"creacion",
+			"Declaracion",
+			"Ezequiel",
+			"indece",
+			"inicializarlo",
+			"Mostar",
+			"MOSTAR",
+			"numeros",
+			"puntaje",
+			"puntajes",
+			"repeticion"
+		]
+	}
+}
