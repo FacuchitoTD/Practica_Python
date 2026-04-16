@@ -137,6 +137,7 @@ while True:
             for i in range(len(herramientas)):
                 if herramientas[i].lower() == herramienta_actualizar.lower():
                     index_herramienta = i
+                    break
             if index_herramienta == -1:
                 print('La herramienta no se encuentra en el inventario.')
                 continue
