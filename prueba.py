@@ -139,7 +139,7 @@ while True:   # REPETIR SIEMPRE
                 tipo_operacion = input("Seleccione una opción (1 o 2): ")
                 cantidad_unidades = input("Ingrese la cantidad de unidades: ")
                 while not cantidad_unidades.isdigit() or int(cantidad_unidades) <= 0:
-                print("Debe ingresar un número entero positivo.")
+                    print("Debe ingresar un número entero positivo.")
                 cantidad_unidades = input("Ingrese nuevamente la cantidad de unidades: ")
                 cantidad_unidades = int(cantidad_unidades)
                 if tipo_operacion == '1':
