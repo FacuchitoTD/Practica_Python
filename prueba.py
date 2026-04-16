@@ -16,13 +16,13 @@ while True:   # REPETIR SIEMPRE
     8. Salir
 =============================================
     ''')
-    opción = input("Ingresa una opción: ")
-    while not opción.isdigit() or int(opción) < 1 or int(opción) > 8:
+    opcion = input("Ingresa una opción: ")
+    while not opcion.isdigit() or int(opcion) < 1 or int(opcion) > 8:
         print("opcion incorrecta")
-        opción = input("Ingresa una opción: ")
-    opción = int(opción)
+        opcion = input("Ingresa una opción: ")
+    opcion = int(opcion)
 
-    match opción:
+    match opcion:
         case 1:
             cantidad = input("\nIngresa la cantidad de herramientas: ")
             while not cantidad.isdigit() or int(cantidad) <= 0:
