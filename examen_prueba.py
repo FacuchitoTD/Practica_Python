@@ -47,10 +47,10 @@ while True:
             else:
                 for i in range(len(existencias), len(herramientas)):
                     print(f'Herramientas: {herramientas[i]}')
-                    cantidad_unidades = input(f'Ingrese la cantidad de unidades: ')
+                    cantidad_unidades = input('Ingrese la cantidad de unidades: ')
                     while not cantidad_unidades.isdigit():
                         print('Debe ingresar un número válido (entero positivo).')
-                        cantidad_unidades = input (f'Ingrese nuevamente la cantidad de unidades: ')    
+                        cantidad_unidades = input ('Ingrese nuevamente la cantidad de unidades: ')    
                     existencias.append(int(cantidad_unidades))
         case 3:
             print('\n---- Resumen de herramientas cargadas ----')
@@ -67,14 +67,17 @@ while True:
             elif len(existencias) < len(herramientas):
                 print('El stock de algunas herramientas no ha sido cargado. Por favor, cargue el stock de todas las herramientas para realizar búsquedas.')
             else:
-                herramienta_busqueda = input ('Ingrese el nombre de la herramienta a buscar: ')
+                herramienta_busqueda = input ('Ingrese el nombre de la herramienta a buscar: ').lower()
                 while herramienta_busqueda == '':
                     print('Debe ingresar algún nombre de una herramienta')
-                    herramienta_busqueda = input ('Ingrese nuevamente el nombre de la herramienta a buscar: ')
-                if herramienta_busqueda in herramientas:
-                    index_herramienta = herramientas.index(herramienta_busqueda)
-                    print(f'{herramienta_busqueda}: {existencias[index_herramienta]} unidades')
-                else:
+                    herramienta_busqueda = input ('Ingrese nuevamente el nombre de la herramienta a buscar: ').lower()
+                encontrado = False
+                for i in range(len(herramientas)):
+                    if herramientas[i].lower() == herramienta_busqueda.lower():
+                        print(f'{herramientas[i]}: {existencias[i]} unidades')
+                        encontrado = True
+                        break
+                if not encontrado:
                     print('La herramienta no se encuentra en el inventario')
             
         case 5:
@@ -126,17 +129,22 @@ while True:
             elif len(existencias) < len(herramientas):
                 print('El stock de algunas herramientas no ha sido cargado. Por favor, cargue el stock de todas las herramientas primero.')
                 continue
-            herramienta_actualizar = input('Ingrese el nombre de la herramienta: ')
+            herramienta_actualizar = input('Ingrese el nombre de la herramienta: ').lower()
             while herramienta_actualizar == '':
                 print('Debe ingresar algún nombre de una herramienta.')
-                herramienta_actualizar = input('Ingrese nuevamente el nombre de la herramienta: ')
-            if herramienta_actualizar not in herramientas:
+                herramienta_actualizar = input('Ingrese nuevamente el nombre de la herramienta: ').lower()
+            index_herramienta = -1
+            for i in range(len(herramientas)):
+                if herramientas[i].lower() == herramienta_actualizar.lower():
+                    index_herramienta = i
+            if index_herramienta == -1:
                 print('La herramienta no se encuentra en el inventario.')
                 continue
-            index_herramienta = herramientas.index(herramienta_actualizar)
-            print('¿Qué operación desea realizar?')
-            print('  1. Venta (disminuir stock)')
-            print('  2. Ingreso (reponer stock)')
+
+            print('''¿Qué operación desea realizar?
+            1. Venta (disminuir stock)
+            2. Ingreso (reponer stock)
+            ''')
             tipo_operacion = input('Seleccione una opción (1 o 2): ')
             while tipo_operacion != '1' and tipo_operacion != '2':
                 print('Opción no válida. Ingrese 1 para Venta o 2 para Ingreso.')

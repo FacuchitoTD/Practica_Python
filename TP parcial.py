@@ -3,12 +3,17 @@ herramientas = []
 existencias = []
 
 # Cantidad de herramientas
-cantidad = int(input("Ingrese la cantidad de herramientas: "))
+cantidad = input("Ingrese la cantidad de herramientas: ")
+
+while not cantidad.isdigit() or int(cantidad) <= 0:
+    print("Error: ingrese un número entero positivo.")
+    cantidad = input("Ingrese la cantidad de herramientas: ")
+cantidad = int(cantidad)
 
 # Carga de nombres
 i = 0
 while i < cantidad:
-    nombre = input("Nombre de herramienta " + str(i+1) + ": ")
+    nombre = input(f"Nombre de herramienta {str(i+1)}: ")
 
     if nombre == "":
         print("Error: nombre vacío.")
@@ -30,28 +35,28 @@ while i < cantidad:
 i = 0
 while i < cantidad:
     print("Herramienta:", herramientas[i])
-    stock = int(input("Cantidad: "))
-
-    if stock < 0:
-        print("Error: no puede ser negativo.")
-        continue
-
-    existencias.append(stock)
-    i = i + 1
+    stock = input("Cantidad: ")
+    if not stock.isdigit() or int(stock) <=0:
+        print("Error: ingrese un caracter valido (Entero Positivo)")
+    else: 
+        existencias.append(stock)
+        i = i + 1
 
 # Menú principal
-opcion = ""
-while opcion != "8":
-    print("\n--- MENÚ PRINCIPAL ---")
-    print("1. Ver inventario")
-    print("2. Consultar stock")
-    print("3. Reporte de agotados")
-    print("4. Alta de nuevo producto")
-    print("5. Actualizar stock")
-    print("6. Salir")
+
+while True:
+    print('''\n--- MENÚ PRINCIPAL ---")
+    1. Ver inventario")
+    2. Consultar stock")
+    3. Reporte de agotados")
+    4. Alta de nuevo producto")
+    5. Actualizar stock")
+    6. Salir")
+    ''')
+    
     opcion = input("Elegí una opción: ")
 
-    # Opción 3: ver inventario completo
+
     if opcion == "1":
         print("\n--- INVENTARIO ---")
         for i in range(len(herramientas)):
